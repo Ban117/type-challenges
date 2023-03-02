@@ -16,3 +16,6 @@ type cases = [
 
 // @ts-expect-error
 type error = MyAwaited<number>
+
+type Test1 = MyAwaited<T>
+//     ^?
