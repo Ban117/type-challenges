@@ -16,5 +16,10 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "prettier.semi": false,
   "typescript.format.semicolons": "remove",
-  "javascript.format.semicolons": "remove"
+  "javascript.format.semicolons": "remove",
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#2A6AB9",
+    "titleBar.activeBackground": "#2A6AB9",
+    "titleBar.activeForeground": "#EFFEF8"
+  }
 }
