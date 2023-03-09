@@ -19,6 +19,8 @@
   "javascript.format.semicolons": "remove",
   "workbench.colorCustomizations": {
     "activityBar.background": "#2A6AB9",
+    "activityBar.inactiveForeground": "#fff",
+    "activityBarBadge.background": "#e83131",
     "titleBar.activeBackground": "#2A6AB9",
     "titleBar.activeForeground": "#EFFEF8"
   }
