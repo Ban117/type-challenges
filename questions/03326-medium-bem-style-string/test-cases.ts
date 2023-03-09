@@ -2,8 +2,8 @@ import type { Equal, Expect } from '@type-challenges/utils'
 
 type cases = [
   Expect<Equal<BEM<'btn', ['price'], []>, 'btn__price'>>,
-  Expect<Equal<BEM<'btn', ['price'], ['warning', 'success']>, 'btn__price--warning' | 'btn__price--success' >>,
-  Expect<Equal<BEM<'btn', [], ['small', 'medium', 'large']>, 'btn--small' | 'btn--medium' | 'btn--large' >>,
+  Expect<Equal<BEM<'btn', ['price'], ['warning', 'success']>, 'btn__price--warning' | 'btn__price--success'>>,
+  Expect<Equal<BEM<'btn', [], ['small', 'medium', 'large']>, 'btn--small' | 'btn--medium' | 'btn--large'>>,
 ]
 
 type T1 = BEM<'btn', ['price'], []>
@@ -21,3 +21,13 @@ type BEM<B extends string, E extends string[], M extends string[]> =
     : M[number] | E[number] extends M[number]
       ? `${B}--${M[number]}` // m only case
       : `${B}__${E[number]}--${M[number]}`// both
+
+type A = 'A' | 'a'
+type B = 'B' | 'b'
+
+type TemplateLiteralsAreDistributive = `${A} -- ${B}`
+//      ^?
+
+type BEMElegant<B extends string, E extends string[], M extends string[]> =
+`${B}${E extends [] ? '' : `__${E[number]}`}${M extends [] ? '' : `--${M[number]}`}`
+
