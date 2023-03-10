@@ -46,7 +46,8 @@
       "no-unused-expressions": "off",
       "prefer-const": "off",
       "no-alert": "off",
-      "@typescript-eslint/consistent-type-definitions": "off"
+      "@typescript-eslint/consistent-type-definitions": "off",
+      "no-multiple-empty-lines": "off"
     }
   }
 }
