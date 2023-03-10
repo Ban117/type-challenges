@@ -27,3 +27,20 @@ interface Expected {
   readonly description?: string
   completed: boolean
 }
+
+// *** Solution ***
+
+type _MyReadonly2<T, K extends keyof T = keyof T> = {
+  readonly [k in K]: T[k]
+} & {
+  [k in Exclude<keyof T, K>]: T[k]
+}
+
+// solution that works with new case, using Exclude was silly anyways
+type MyReadonly2<T, K extends keyof T = keyof T> = {
+  readonly [k in K]: T[k]
+} & Omit<T, K>
+
+// *** 📚 Notes 📚 ***
+
+// * We can't use Exclude as it takes and gives back a union of keys
