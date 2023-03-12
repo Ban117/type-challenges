@@ -22,6 +22,6 @@
 1. [return-type](questions/00002-medium-return-type/template.ts)
 2. [omit](questions/00003-medium-omit/template.ts)
 3. [read-only-2](questions/00008-medium-readonly-2/template.ts)
-4. [deep-readonly](questions/00009-medium-deep-readonly/template.ts) (keyof T extends never trick)
+4. [deep-readonly](questions/00009-medium-deep-readonly/template.ts) (mapping a primitive type returns primitive type)
 5. [tuple-to-union](questions/00010-medium-tuple-to-union/template.ts)
 6. [bem](questions/03326-medium-bem-style-string/template.ts) (template literal types are distributive with union types)

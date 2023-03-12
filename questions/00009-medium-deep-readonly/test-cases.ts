@@ -2,7 +2,7 @@ import type { Equal, Expect } from '@type-challenges/utils'
 
 type cases = [
   Expect<Equal<DeepReadonly<X1>, Expected1>>,
-  Expect<Equal<DeepReadonly<X2>, Expected2>>, // todo
+  Expect<Equal<DeepReadonly<X2>, Expected2>>,
 ]
 
 type X1 = {
@@ -62,8 +62,37 @@ type T1 = DeepReadonly<X1>
 type T2 = DeepReadonly<X2>
 //    ^?
 
+
 // *** Solution ***
-type DeepReadonly<T> =
+
+// type DeepReadonly<T> =
+//   { readonly [K in keyof T]: DeepReadonly<T[K]> }
+
+type DeepReadonly<T> = T extends Function
+  ? T
+  : { readonly [K in keyof T]: DeepReadonly<T[K]> }
+
+
+
+// *** Lessons ***
+// https://stackoverflow.com/questions/68693054/what-is-extends-never-used-for
+
+// 1. `keyof primitive` doesn't extend never
+type KeyofPrimativeDoesntExtendNever = keyof string extends never ? true : false // false
+type PrimitivesHaveManyKeys = keyof string
+
+// 2. Mapped types skip primitives and just return their input
+type MappedTypesSkipPrimitives<T> = {
+  [K in keyof T]: 'mappy'
+}
+type TestMappedPrimitive = MappedTypesSkipPrimitives<string> // returns string! Not some object type!
+
+
+
+// ! Bad "Solution"
+// The below is wrong! `keyof <some primative> extends never` is false.
+// `keyof primative` doesn’t extend `never`.
+type _DeepReadonly<T> =
   keyof T extends never
-    ? T // T isn't enumerable, so it's a primative
+    ? T // T isn't enumerable, so it's a primitive <- this is not true!
     : { readonly [x in keyof T]: DeepReadonly<T[x]> }
