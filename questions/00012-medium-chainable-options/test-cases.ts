@@ -41,3 +41,23 @@ type Expected2 = {
 type Expected3 = {
   name: number
 }
+
+// *** Tests ***
+type T1 = typeof result1
+//    ^?
+
+type T3 = typeof result3
+//   ^?
+
+
+// *** Solution ***
+
+type Chainable<T = {}> = {
+  option<K extends string, V>(
+    key: K extends keyof T ? never : K,
+    value: V
+  ): Chainable<
+    Omit<T, K> & { [X in K]: V }
+  >
+  get(): T
+}
